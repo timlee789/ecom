@@ -17,14 +17,15 @@ export function StateContext({children}) {
         const checkProductInCart = cartItems.find((item) => item.id === product._id);
         setTotalPrice((prevTotalPrice) => prevTotalPrice + product.price * quantity);
         setTotalQuantities((prevTotalQuantities) => prevTotalQuantities + quantity);
-        
+        console.log(checkProductInCart);
         if(checkProductInCart) {
             const updatedCartItems = cartItems.map((cartProduct) => {
-                if(cartProduct._id === product._id) return {
-                    ...cartProduct,
-                    qunatity: cartProduct.quantity + quantity
-                }
+              if(cartProduct._id === product._id) return {
+                ...cartProduct,
+                quantity: cartProduct.quantity + quantity
+              }
             })
+      
             setCartItems(updatedCartItems);
            
         } else {
